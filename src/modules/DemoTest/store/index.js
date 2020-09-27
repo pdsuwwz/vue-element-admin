@@ -14,7 +14,11 @@ const DemoTestModule = {
     async GetModuleTestList ({ commit }, params) {
       // TODO: 模拟响应时间
       await sleep(1000)
-      const result = await getDemoTestList(params)
+      // TODO: 模拟 api
+      // const result = await getDemoTestList(params)
+      const result = {
+        test: 'ok'
+      }
       commit('SET_DEMO_LIST', result)
       return result
     }
@@ -25,7 +29,7 @@ const DemoTestModule = {
     }
   },
   getAction (name) {
-    return `ModuleTest/${Object.keys(this.actions)[Object.keys(this.actions).indexOf(name)]}`
+    return `DemoTest/${Object.keys(this.actions)[Object.keys(this.actions).indexOf(name)]}`
   }
 }
 
