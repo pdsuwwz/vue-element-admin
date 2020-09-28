@@ -10,7 +10,7 @@ import { mapGetters } from 'vuex'
 import DemoTestModule from '@/modules/DemoTest/store'
 
 export default {
-  name: 'xx',
+  name: 'Xx',
   computed: {
     ...mapGetters({
       demoList: 'DemoTest/demoList'

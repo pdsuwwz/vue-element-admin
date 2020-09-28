@@ -47,6 +47,7 @@
   * [ ] 混合图
 * 工具 Tools
   * [ ] axios 封装
+  * [ ] js-cookie
   * [ ] 全局单例 Loading 封装
   * [ ] async/await 封装
   * [ ] 全局路由搜索
