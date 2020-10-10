@@ -27,6 +27,24 @@ const routes = [
     ]
   },
   {
+    path: '/user',
+    component: Layout,
+    name: 'User',
+    meta: {
+      title: '账户'
+    },
+    children: [
+      {
+        path: 'login',
+        name: 'UserLogin',
+        component: importModule('UserAccount/pages/login'),
+        meta: {
+          title: '登录'
+        }
+      }
+    ]
+  },
+  {
     path: '*',
     name: '404',
     component: () => import('@/components/404')

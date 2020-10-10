@@ -7,7 +7,8 @@
 ## 内置功能
 
 * 账户 User
-  * [ ] 登录/注销
+  * [x] 登录
+  * [ ] 注销
   * [ ] 注册
 * 路由权限 Route Permission
   * [ ] 路由权限
@@ -19,7 +20,7 @@
   * [ ] 侧边菜单栏 MenuBar (支持多级路由嵌套, 自适应收缩)
   * [ ] 路由标签切换选项卡
 * 布局 Layout
-  * [ ] iconfont / font Awesome
+  * [x] iconfont / font Awesome
   * [ ] 布局切换(导航, 流式/定宽)
   * [ ] 主题色，换肤
   * [ ] 风格切换(可预览)
@@ -36,6 +37,7 @@
   * [ ] 组合表单
   * [ ] 分步表单
   * [ ] 表单详情(类似只读)
+  * [ ] 表单 props rules Mixins 封装
 * 图表 Chart (D3, Echarts...)
   * [ ] 仪表盘
   * [ ] 折线图
@@ -47,6 +49,7 @@
   * [ ] 混合图
 * 工具 Tools
   * [ ] axios 封装
+  * [x] js-cookie
   * [ ] 全局单例 Loading 封装
   * [ ] async/await 封装
   * [ ] 全局路由搜索
@@ -68,6 +71,7 @@
 ## 拓展
   * [ ] 命令行 cli 支持自定义安装哪种功能
   * [ ] 支持 Typescript
+  * [ ] 实现 JSON 可配置化
 
 
 
@@ -78,3 +82,5 @@ https://material-ui.com/zh/getting-started/supported-components/
 https://preview.pro.ant.design/dashboard/analysis
 
 https://preview.pro.ant.design/dashboard/workplace
+
+https://github.com/baidu/amis

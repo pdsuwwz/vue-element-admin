@@ -7,7 +7,11 @@ function validatorRules (validator, trigger = '') {
   validator ? rule.validator = validator : delete rule.validator
   return rule
 }
-function requiredRules (trigger = 'blur', message = '不能为空') {
+function requiredRules (params = {}) {
+  const { trigger, message } = Object.assign({}, {
+    trigger: 'blur',
+    message: '不能为空'
+  }, params)
   return validatorRules((rule, value, callback) => {
     if (!value) {
       callback(new Error(message))
@@ -20,7 +24,11 @@ function requiredRules (trigger = 'blur', message = '不能为空') {
     }
   }, trigger)
 }
-function requiredRadioRules (trigger = 'change', message = '不能为空') {
+function requiredRadioRules (params = {}) {
+  const { trigger, message } = Object.assign({}, {
+    trigger: 'change',
+    message: '不能为空'
+  }, params)
   return validatorRules((rule, value, callback) => {
     if (['boolean', 'number'].includes(typeof value)) {
       callback()
