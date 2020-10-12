@@ -8,6 +8,11 @@ body {
 html {
   box-sizing: border-box;
   font-size: 14px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#app, body, html {
+  height: 100%;
 }
 
 body,
@@ -48,4 +53,14 @@ nav,
 section {
   margin: 0;
   padding: 0;
+}
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+  outline: none;
+}
+
+ul, ol {
+  list-style: none;
 }
