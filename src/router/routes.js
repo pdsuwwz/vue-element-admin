@@ -1,4 +1,5 @@
 const Layout = () => import('@/components/Layout/index')
+const LayoutBasic = () => import('@/components/Layout/LayoutBasic')
 const importModule = (filePath) => {
   return () => import(`@/modules/${filePath}`)
 }
@@ -6,7 +7,36 @@ const importModule = (filePath) => {
 const routes = [
   {
     path: '/',
-    title: 'Dashboard'
+    redirect: '/dashboard'
+  },
+  {
+    path: '/dashboard',
+    title: 'dashboard',
+    name: '首页',
+    meta: {
+      title: 'dashboard'
+    },
+    component: LayoutBasic,
+    children: [
+      {
+        path: 'test',
+        name: '测试啦啦啦',
+        component: () => import('@/components/Navigation/test'),
+        meta: {
+          title: '测试啦啦啦'
+        },
+        children: [
+          {
+            path: 'test23',
+            name: '测试啦啦啦23',
+            component: () => import('@/components/Navigation/test'),
+            meta: {
+              title: '测试啦啦啦23'
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     path: '/demo-test',
