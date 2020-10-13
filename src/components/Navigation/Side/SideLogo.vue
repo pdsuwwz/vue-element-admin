@@ -35,6 +35,7 @@ export default {
 .side-logo-container {
   position: relative;
   height: 100%;
+  white-space: nowrap;
   & > a {
     display: flex;
     align-items: center;
