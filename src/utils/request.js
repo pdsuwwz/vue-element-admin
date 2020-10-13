@@ -4,6 +4,25 @@ import { Message } from 'element-ui'
 import { getCookieToken } from '@/utils/cookie'
 import { camelizeKeys, decamelizeKeys } from '@/utils/camelCase'
 
+// code Message
+const codeMessage = {
+  200: '服务器成功返回请求的数据。',
+  201: '新建或修改数据成功。',
+  202: '一个请求已经进入后台排队（异步任务）。',
+  204: '删除数据成功。',
+  400: '发出的请求有错误，服务器没有进行新建或修改数据的操作。',
+  401: '用户没有权限（令牌、用户名、密码错误）。',
+  403: '用户得到授权，但是访问是被禁止的。',
+  404: '发出的请求针对的是不存在的记录，服务器没有进行操作。',
+  406: '请求的格式不可得。',
+  410: '请求的资源被永久删除，且不会再得到的。',
+  422: '当创建一个对象时，发生一个验证错误。',
+  500: '服务器发生错误，请检查服务器。',
+  502: '网关错误。',
+  503: '服务不可用，服务器暂时过载或维护。',
+  504: '网关超时。'
+}
+
 // 创建axios实例
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // api 的 base_url
@@ -33,60 +52,18 @@ service.interceptors.response.use(
   },
   error => {
     if (error.response) {
-      switch (error.response.status) {
-        case 400:
-          return Promise.reject(error)
-        case 401:
-          Message({
-            message: '401! 操作无权限，请添加权限',
-            type: 'error',
-            duration: 3 * 1000
-          })
-          return Promise.reject(error)
-        case 403:
-          Message({
-            message: error.response.data.message,
-            type: 'error',
-            duration: 3 * 1000
-          })
-          return Promise.reject(error)
-        case 404:
-          Message({
-            message: error.response.data.message,
-            type: 'error',
-            duration: 3 * 1000
-          })
-          return Promise.reject(error)
-        case 500:
-          Message({
-            message: '500！报错啦， 请稍后重试',
-            type: 'error',
-            duration: 3 * 1000
-          })
-          return Promise.reject(error)
-        case 422:
-          return Promise.reject(error)
-        case 429:
-          Message({
-            message: '请求次数过多，请稍后再试',
-            type: 'error',
-            duration: 3 * 1000
-          })
-          return Promise.reject(error)
-        default:
-          Message({
-            dangerouslyUseHTMLString: true,
-            message: error.response.data.errors || error.response.data.message,
-            type: 'error',
-            duration: 5 * 1000
-          })
-          return Promise.reject(error)
-      }
+      Message({
+        message: codeMessage[error.response.status] || error.response.data.message,
+        type: 'error',
+        duration: 3 * 1000,
+        showClose: true
+      })
     } else {
       Message({
         message: error.message,
         type: 'error',
-        duration: 5 * 1000
+        duration: 5 * 1000,
+        showClose: true
       })
       return Promise.reject(error)
     }
