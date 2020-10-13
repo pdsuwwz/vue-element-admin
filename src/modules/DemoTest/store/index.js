@@ -1,6 +1,7 @@
 
 import { sleep } from '@/utils/request'
 import { getDemoTestList } from '@/modules/DemoTest/api'
+import MUTATION from '@/modules/DemoTest/store/mutations-type'
 
 const DemoTestModule = {
   namespaced: true,
@@ -19,12 +20,12 @@ const DemoTestModule = {
       const result = {
         test: 'ok'
       }
-      commit('SET_DEMO_LIST', result)
+      commit(MUTATION.SET_DEMO_LIST, result)
       return result
     }
   },
   mutations: {
-    SET_DEMO_LIST (state, demoList) {
+    [MUTATION.SET_DEMO_LIST] (state, demoList) {
       state.demoList = demoList
     }
   },
