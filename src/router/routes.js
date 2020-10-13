@@ -4,6 +4,96 @@ const importModule = (filePath) => {
   return () => import(`@/modules/${filePath}`)
 }
 
+// TODO: 为渲染菜单添加的测试路由
+const menusTest = [
+  {
+    path: '/nested',
+    component: Layout,
+    name: 'Nested',
+    meta: {
+      title: '嵌套路由测试'
+    },
+    children: [
+      {
+        path: 'menu1',
+        name: 'Menu1',
+        meta: {
+          title: 'Menu1'
+        }
+      },
+      {
+        path: 'menu2',
+        name: 'Menu2',
+        meta: {
+          title: 'Menu2'
+        },
+        children: [
+          {
+            path: 'menu2-1',
+            name: 'Menu2-1',
+            meta: {
+              title: 'Menu2-1'
+            }
+          },
+          {
+            path: 'menu2-2',
+            name: 'Menu2-2',
+            meta: {
+              title: 'Menu2-2'
+            }
+          },
+          {
+            path: 'menu2-3',
+            name: 'Menu2-3',
+            meta: {
+              title: 'Menu2-3'
+            }
+          }
+        ]
+      },
+      {
+        path: 'menu3',
+        name: 'Menu3',
+        meta: {
+          title: 'Menu3'
+        },
+        children: [
+          {
+            path: 'menu3-1',
+            name: 'Menu3-1',
+            meta: {
+              title: 'Menu3-1'
+            }
+          },
+          {
+            path: 'menu3-2',
+            name: 'Menu3-2',
+            meta: {
+              title: 'Menu3-2'
+            },
+            children: [
+              {
+                path: 'menu3-2-1',
+                name: 'Menu3-2-1',
+                meta: {
+                  title: 'Menu3-2-1'
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        path: 'menu4',
+        name: 'Menu4',
+        meta: {
+          title: 'Menu4'
+        }
+      }
+    ]
+  }
+]
+
 const routes = [
   {
     path: '/',
@@ -74,6 +164,8 @@ const routes = [
       }
     ]
   },
+  // TODO: 为渲染菜单添加的测试路由
+  ...menusTest,
   {
     path: '*',
     name: '404',
