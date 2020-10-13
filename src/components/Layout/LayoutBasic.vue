@@ -7,6 +7,15 @@
         <NavigationPageHeader />
         <div class="inner-content">
           <router-view />
+          <ul>
+            <li
+              v-for="item in 10"
+              :key="item"
+              style="height: 200px;"
+            >
+              {{ item }}
+            </li>
+          </ul>
         </div>
       </main>
     </section>
@@ -14,7 +23,7 @@
 </template>
 
 <script>
-import NavigationMenuBar from '@/components/Navigation/MenuBar'
+import NavigationMenuBar from '@/components/Navigation/MenuBar/index'
 import NavigationNavBar from '@/components/Navigation/NavBar'
 import NavigationPageHeader from '@/components/Navigation/PageHeader'
 export default {
