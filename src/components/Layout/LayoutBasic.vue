@@ -1,15 +1,7 @@
 <template>
   <div class="layout-basic-container">
-    <!-- menubar 占位符 -->
-    <div
-      style="min-width: 210px; background: transparent;"
-    />
     <NavigationMenuBar />
     <section class="section-container">
-      <!-- navbar 占位符 -->
-      <div
-        style="height: 48px; line-height: 48px; background: transparent;"
-      />
       <NavigationNavBar />
       <main class="main-content-box">
         <NavigationPageHeader />
