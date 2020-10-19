@@ -16,10 +16,11 @@ const DemoTestModule = {
       // TODO: 模拟响应时间
       await sleep(1000)
       // TODO: 模拟 api
-      // const result = await getDemoTestList(params)
-      const result = {
-        test: 'ok'
-      }
+      const result = await getDemoTestList(params)
+      // const result = {
+      //   test: 'ok'
+      // }
+      console.log(result)
       commit(MUTATION.SET_DEMO_LIST, result)
       return result
     }

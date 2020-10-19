@@ -4,7 +4,8 @@ export function getDemoTestList (params) {
   return request({
     url: '/api/demo_test/list',
     method: 'get',
-    params
+    params,
+    redirect: '404'
   })
 }
 
