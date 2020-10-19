@@ -48,10 +48,9 @@
   * [ ] 雷达图
   * [ ] 混合图
 * 工具 Tools
-  * [ ] axios 封装
+  * [x] axios 封装
   * [x] js-cookie
   * [ ] 全局单例 Loading 封装
-  * [ ] async/await 封装
   * [ ] 全局路由搜索
   * [ ] mock api
   * [ ] 国际化 i18n
@@ -72,6 +71,7 @@
   * [ ] 命令行 cli 支持自定义安装哪种功能
   * [ ] 支持 Typescript
   * [ ] 实现 JSON 可配置化
+  * [ ] 使用规范说明文档
 
 
 
