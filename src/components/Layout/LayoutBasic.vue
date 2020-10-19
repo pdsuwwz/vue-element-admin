@@ -44,12 +44,15 @@ export default {
     display: flex;
     flex: auto;
     flex-direction: column;
+    min-width: 0;
     min-height: 0;
     background: #f0f2f5;
     .main-content-box {
       flex: auto;
+      overflow: hidden;
       .inner-content {
         padding: 24px;
+        overflow-x: auto;
       }
     }
   }
