@@ -3,11 +3,11 @@ import { Message } from 'element-ui'
 
 import { getCookieToken } from '@/utils/cookie'
 import { camelizeKeys, decamelizeKeys } from '@/utils/camelCase'
-import router from '@/router/index'
+import Router from '@/router/index'
 
 // redirect error
 function errorRedirect (url) {
-  router.push(`/${url}`)
+  Router.push(`/${url}`)
 }
 // code Message
 const codeMessage = {
@@ -76,6 +76,7 @@ service.interceptors.response.use(
   },
   error => {
     /**
+     * 某些特定的接口 404 500 需要跳转
      * 在需要重定向的接口中传入 redirect字段  值为要跳转的路由
      *   redirect之后  调用接口的地方会继续执行
      *   因为此时 response error
@@ -92,7 +93,6 @@ service.interceptors.response.use(
         duration: 3 * 1000,
         showClose: true
       })
-      // 某些特定的接口 404 500 需要跳转
       return {
         data: {},
         error: error.response.status,
