@@ -23,6 +23,22 @@ const routes = [
         meta: {
           title: 'demo列表'
         }
+      },
+      {
+        path: 'show',
+        name: 'DemoTestLoadingShow',
+        component: importModule('DemoTest/pages/loading-show'),
+        meta: {
+          title: 'demo-loading-show'
+        }
+      },
+      {
+        path: 'hide',
+        name: 'DemoTestLoadingHide',
+        component: importModule('DemoTest/pages/loading-hide'),
+        meta: {
+          title: 'demo-loading-hide'
+        }
       }
     ]
   },
