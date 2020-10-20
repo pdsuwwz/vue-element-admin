@@ -50,7 +50,7 @@
 * 工具 Tools
   * [x] axios 封装
   * [x] js-cookie
-  * [ ] 全局单例 Loading 封装
+  * [x] 全局单例 Loading 封装
   * [ ] 全局路由搜索
   * [ ] mock api
   * [ ] 国际化 i18n
