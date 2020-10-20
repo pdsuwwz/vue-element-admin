@@ -15,7 +15,6 @@ export default {
   created () {
     ServiceLoading.show({
       background: '#fbfbfba1'
-      // text: 'loading 开启 5秒后跳转到别的路由的组件'
     })
     setTimeout(() => {
       this.$router.push('/demo-test/hide')
