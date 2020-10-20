@@ -1,26 +1,50 @@
 <template>
-  <div class="menu-bar-item-container">
+  <div
+    v-if="!routeItem.hiddenMenu"
+    class="menu-bar-item-container"
+  >
     <el-submenu
-      v-if="routeItem.children"
+      v-if="getRouteItemList"
       :index="rootPath"
       popper-append-to-body
     >
       <NavigationMenuBarItem
-        v-for="(route, index) in routeItem.children"
+        v-for="(route, index) in getRouteItemList"
         :key="index"
         :route-item="route"
         :root-path="getJoinPath(route.path)"
       />
       <template slot="title">
-        <!-- TODO: icon 配置 -->
-        <i class="el-icon-location" />
+        <i
+          v-if="isFontAwesome"
+          class="menu-font-awesome-icon"
+        >
+          <font-awesome-icon
+            :icon="routeItem.icon"
+          />
+        </i>
+        <i
+          v-else
+          :class="routeItem.icon"
+        />
         <span slot="title">{{ routeItem.name }}</span>
       </template>
     </el-submenu>
-    <template v-else-if="!routeItem.children && !routeItem.redirect">
+
+    <template v-else-if="isOnlyRoute">
       <el-menu-item :index="rootPath">
-        <!-- TODO: icon 配置 -->
-        <i class="el-icon-setting" />
+        <i
+          v-if="isFontAwesome"
+          class="menu-font-awesome-icon"
+        >
+          <font-awesome-icon
+            :icon="routeItem.icon"
+          />
+        </i>
+        <i
+          v-else
+          :class="routeItem.icon"
+        />
         <span slot="title">{{ routeItem.name }}</span>
       </el-menu-item>
     </template>
@@ -43,6 +67,20 @@ export default {
       default: ''
     }
   },
+  computed: {
+    isOnlyRoute () {
+      const blackList = ['/', '*']
+      return !this.routeItem.children &&
+        !this.routeItem.redirect &&
+        !blackList.includes(this.routeItem.path)
+    },
+    isFontAwesome () {
+      return this.routeItem.icon && !this.routeItem.icon.startsWith('el-')
+    },
+    getRouteItemList () {
+      return this.routeItem.children
+    }
+  },
   methods: {
     getJoinPath (targetPath) {
       return path.join(this.rootPath, targetPath)
@@ -50,6 +88,16 @@ export default {
   }
 }
 </script>
-<style lang="scss">
-
+<style lang="scss" scoped>
+.menu-bar-item-container {
+  .menu-font-awesome-icon {
+    display: inline-block;
+    width: 24px;
+    margin-right: 5px;
+    line-height: 1;
+    font-size: 16px;
+    text-align: center;
+    vertical-align: middle;
+  }
+}
 </style>

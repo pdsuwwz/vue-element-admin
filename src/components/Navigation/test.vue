@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>测试测试</div>
+    <div>测试测试{{ $route.path }}</div>
   </div>
 </template>
 

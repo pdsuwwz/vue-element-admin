@@ -4,12 +4,16 @@ const importModule = (filePath) => {
   return () => import(`@/modules/${filePath}`)
 }
 
-// TODO: 为渲染菜单添加的测试路由
+/**
+ * 为渲染菜单添加的测试路由
+ * hiddenMenu: true 表示不在菜单中显示
+ */
 const menusTest = [
   {
     path: '/nested',
     component: Layout,
     name: 'Nested',
+    icon: 'el-icon-location',
     meta: {
       title: '嵌套路由测试'
     },
@@ -38,6 +42,7 @@ const menusTest = [
           {
             path: 'menu2-2',
             name: 'Menu2-2',
+            hiddenMenu: true,
             meta: {
               title: 'Menu2-2'
             }
@@ -54,6 +59,7 @@ const menusTest = [
       {
         path: 'menu3',
         name: 'Menu3',
+        icon: 'el-icon-setting',
         meta: {
           title: 'Menu3'
         },
@@ -86,6 +92,7 @@ const menusTest = [
       {
         path: 'menu4',
         name: 'Menu4',
+        icon: 'el-icon-setting',
         meta: {
           title: 'Menu4'
         }
@@ -103,6 +110,7 @@ const routes = [
     path: '/dashboard',
     title: 'dashboard',
     name: '首页',
+    icon: 'el-icon-setting',
     meta: {
       title: 'dashboard'
     },
@@ -132,6 +140,7 @@ const routes = [
     path: '/demo-test',
     component: Layout,
     name: 'DemoTest',
+    icon: 'el-icon-attract',
     meta: {
       title: 'demo 管理'
     },
@@ -150,6 +159,7 @@ const routes = [
     path: '/user',
     component: Layout,
     name: 'User',
+    icon: 'eye',
     meta: {
       title: '账户'
     },

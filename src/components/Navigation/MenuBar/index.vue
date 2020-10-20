@@ -119,6 +119,14 @@ $menuCollapseWidth: 64px;
     border: none;
 
     // 修复折叠后文字无法隐藏的 bug
+    /deep/ .el-submenu {
+      & > .el-submenu__title {
+        & > span, .el-submenu__icon-arrow {
+          opacity: 0;
+          animation: delayShowCollapse .5s ease-in-out forwards;
+        }
+      }
+    }
     /deep/ &.el-menu--collapse {
       .el-submenu {
         & > .el-submenu__title {
@@ -141,6 +149,15 @@ $menuCollapseWidth: 64px;
       background: rgba(0,0,0,.06);
       border-radius: 3px;
     }
+  }
+}
+
+@keyframes delayShowCollapse {
+  from{
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 </style>
