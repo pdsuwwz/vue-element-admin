@@ -45,7 +45,7 @@ const routes = [
   {
     path: '/charts',
     name: 'Charts',
-    component: importModule('ChartsTest'),
+    component: importModule('ChartsTest/pages/index'),
     meta: {
       title: '可视化-图表'
     }
