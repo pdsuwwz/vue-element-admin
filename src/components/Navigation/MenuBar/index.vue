@@ -131,8 +131,9 @@ $menuCollapseWidth: 64px;
   }
   .menubar-menu-list {
     flex: 1;
-    overflow: hidden auto;
+    margin-top: 4px;
     border: none;
+    overflow: hidden auto;
 
     // 修复折叠后文字无法隐藏的 bug
     /deep/ .el-submenu {

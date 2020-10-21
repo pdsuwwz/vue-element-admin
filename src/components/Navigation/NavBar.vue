@@ -1,9 +1,5 @@
 <template>
   <div>
-    <!-- navbar 占位符 -->
-    <div
-      class="navbar-placeholder"
-    />
     <header
       class="navigation-navbar-header-container fixed-header"
     >
@@ -29,20 +25,17 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.navbar-placeholder {
-  height: 48px;
-  line-height: 48px;
-  background: transparent;
-}
+$headerHeight: 48px;
 .navigation-navbar-header-container {
-  height: 48px;
-  line-height: 48px;
+  height: $headerHeight;
+  line-height: $headerHeight;
   &.fixed-header {
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     right: 0;
+    z-index: 1;
     box-shadow: 0 1px 4px rgba(0,21,41,.08);
   }
   .navbar-header-box {

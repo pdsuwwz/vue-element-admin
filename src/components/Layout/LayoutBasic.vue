@@ -1,8 +1,8 @@
 <template>
   <div class="layout-basic-container">
+    <NavigationNavBar />
     <NavigationMenuBar />
     <section class="section-container">
-      <NavigationNavBar />
       <main class="main-content-box">
         <NavigationPageHeader />
         <div class="inner-content">
@@ -27,6 +27,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+$headerHeight: 48px;
 .layout-basic-container {
   min-height: 100%;
   display: flex;
@@ -36,14 +37,13 @@ export default {
     flex: auto;
     flex-direction: column;
     min-width: 0;
-    min-height: 0;
-    background: #f0f2f5;
+    background-color: #f0f2f5;
     .main-content-box {
+      margin-top: $headerHeight;
       flex: auto;
-      overflow: hidden;
+      overflow: auto hidden;
       .inner-content {
         padding: 24px;
-        overflow-x: auto;
       }
     }
   }
