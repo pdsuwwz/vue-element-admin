@@ -18,6 +18,7 @@
         class="menubar-menu-list"
         :collapse="isCollapse"
         :collapse-transition="false"
+        :active-text-color="getActiveTextColor"
         @select="handleMenuSelect"
       >
         <NavigationMenuBarItem
@@ -47,6 +48,8 @@
 
 import NavigationMenuBarItem from '@/components/Navigation/MenuBar/MenuBarItem'
 
+import ElementVariables from '@/styles/element-variables.scss'
+
 export default {
   name: 'NavigationMenuBar',
   components: {
@@ -63,6 +66,9 @@ export default {
     },
     getCurrentRoute () {
       return this.$route.path
+    },
+    getActiveTextColor () {
+      return ElementVariables.colorPrimary
     }
   },
   methods: {

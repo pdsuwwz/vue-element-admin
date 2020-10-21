@@ -10,6 +10,7 @@ const importModule = (filePath) => {
 /**
  * 为渲染菜单添加的测试路由
  * hiddenMenu: true 表示不在菜单中显示
+ * 若含有 children 路由，则需要将 redirect 设置为 children[0] 的 path 路径
  */
 
 const routes = [
@@ -56,6 +57,7 @@ const routes = [
       title: '账户'
     },
     hiddenMenu: true,
+    redirect: '/user/login',
     children: [
       {
         path: 'login',

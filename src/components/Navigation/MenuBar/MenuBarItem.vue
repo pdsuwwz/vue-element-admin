@@ -6,6 +6,9 @@
     <el-submenu
       v-if="getRouteItemList"
       :index="rootPath"
+      :class="{
+        'submenu-active': isActiveRootRoute
+      }"
       popper-append-to-body
     >
       <NavigationMenuBarItem
@@ -79,6 +82,12 @@ export default {
     },
     getRouteItemList () {
       return this.routeItem.children
+    },
+    getCurrentRoute () {
+      return this.$route.path
+    },
+    isActiveRootRoute () {
+      return this.getCurrentRoute.includes(this.rootPath)
     }
   },
   methods: {
@@ -98,6 +107,13 @@ export default {
     font-size: 16px;
     text-align: center;
     vertical-align: middle;
+  }
+  /deep/ .el-submenu.submenu-active {
+    & > .el-submenu__title,
+    .el-icon-location,
+    .menu-font-awesome-icon {
+      color: $--color-primary;
+    }
   }
 }
 </style>
