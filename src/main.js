@@ -11,7 +11,9 @@ import store from '@/store/index'
 import Meta from 'vue-meta'
 import Mixin from '@/mixins'
 
-import 'element-ui/lib/theme-chalk/index.css'
+import '@/styles/element-variables.scss'
+import '@/styles/theme.scss'
+
 import '@/router/permission'
 
 Vue.use(Meta)
