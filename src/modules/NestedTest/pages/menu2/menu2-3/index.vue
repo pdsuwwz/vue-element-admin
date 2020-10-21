@@ -1,5 +1,5 @@
 <template>
-  <div class="nested-container">
+  <div class="nested-child-container">
     Menu2-3
     <router-view />
   </div>
@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.nested-container {
+.nested-child-container {
   width: 260px;
   padding: 20px;
   border: 1px solid #000;
