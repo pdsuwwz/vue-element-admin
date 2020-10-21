@@ -14,10 +14,11 @@
       }"
     >
       <el-menu
-        default-active="/nested/menu3/menu3-2/menu3-2-1"
+        :default-active="getCurrentRoute"
         class="menubar-menu-list"
         :collapse="isCollapse"
         :collapse-transition="false"
+        @select="handleMenuSelect"
       >
         <NavigationMenuBarItem
           v-for="(route, index) in getRoutes"
@@ -59,12 +60,21 @@ export default {
   computed: {
     getRoutes () {
       return this.$router.options.routes
+    },
+    getCurrentRoute () {
+      return this.$route.path
     }
   },
   methods: {
     toggleCollapse () {
       this.isCollapse = !this.isCollapse
       localStorage.setItem('menu-is-collapse', this.isCollapse ? '1' : '0')
+    },
+    handleMenuSelect (path) {
+      if (this.getCurrentRoute === path) return
+      this.$router.push({
+        path
+      })
     }
   }
 }

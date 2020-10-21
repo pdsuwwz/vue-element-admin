@@ -32,12 +32,17 @@ export default {
   computed: {
     getRouteList () {
       return this.$route.matched
+    },
+    getCurrentRoute () {
+      return this.$route.path
     }
   },
   methods: {
-    handleLink (route) {
+    handleLink ({ redirect, path }) {
+      const isLoaded = [redirect, path].some(pathItem => this.getCurrentRoute === pathItem)
+      if (isLoaded) return
       this.$router.push({
-        path: route.path
+        path: redirect || path
       })
     }
   }

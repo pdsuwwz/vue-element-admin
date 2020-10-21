@@ -7,15 +7,6 @@
         <NavigationPageHeader />
         <div class="inner-content">
           <router-view />
-          <ul>
-            <li
-              v-for="item in 10"
-              :key="item"
-              style="height: 200px;"
-            >
-              {{ item }}
-            </li>
-          </ul>
         </div>
       </main>
     </section>
