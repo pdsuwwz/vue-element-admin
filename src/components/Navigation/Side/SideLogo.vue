@@ -1,7 +1,6 @@
 <template>
   <div
     class="side-logo-container"
-    @click="handleClick()"
   >
     <router-link to="/">
       <img
@@ -22,11 +21,6 @@ export default {
   data () {
     return {
       title: 'Element Admin'
-    }
-  },
-  methods: {
-    handleClick () {
-      this.$emit('click')
     }
   }
 }
