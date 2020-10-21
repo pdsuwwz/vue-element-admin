@@ -1,5 +1,5 @@
 <template>
-  <div class="nested-menu2-2-2-container">
+  <div class="nested-child-child-container">
     Menu2-2-2
     <router-view />
   </div>
