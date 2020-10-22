@@ -9,7 +9,7 @@
         :label="item.label"
         :name="item.name"
       >
-        <Layout :charts-data="item.data[item.name]" />
+        <Layout :charts-data="echartsData[item.name]" />
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -25,7 +25,12 @@ export default {
   data () {
     return {
       tabDefault: 'echarts',
-      tabList: [{ label: 'Echarts', name: 'echarts', data: chartsData }, { label: 'D3', name: 'd3', data: chartsData }]
+      tabList: [{ label: 'Echarts', name: 'echarts' }, { label: 'D3', name: 'd3' }]
+    }
+  },
+  computed: {
+    echartsData: () => {
+      return chartsData
     }
   },
   watch: {},
@@ -34,6 +39,7 @@ export default {
   created () {
   },
   mounted () {
+    console.log(this.echartsData)
   },
   methods: {
   }
