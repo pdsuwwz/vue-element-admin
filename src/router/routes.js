@@ -67,10 +67,19 @@ const routes = [
   {
     path: '/charts',
     name: 'Charts',
-    component: importModule('ChartsTest/pages/index'),
-    meta: {
-      title: '可视化-图表'
-    }
+    component: LayoutBasic,
+    icon: 'chart-bar',
+    redirect: '/charts/demo',
+    children: [
+      {
+        path: 'demo',
+        name: 'ChartsDemo',
+        component: importModule('ChartsTest/pages/index'),
+        meta: {
+          title: '可视化-图表-demo'
+        }
+      }
+    ]
   },
   {
     path: '/user',
