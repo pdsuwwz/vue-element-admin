@@ -57,6 +57,9 @@ export default {
 //@import url(); 引入公共css类
 .charts-wrap {
   box-sizing: border-box;
-  padding: 16px 24px;
+  padding: 16px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, .3);
 }
 </style>
