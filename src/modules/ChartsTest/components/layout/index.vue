@@ -86,7 +86,7 @@ export default {
     display: flex;
     flex-wrap: wrap;
     .wrap-flex-item {
-      width: 350px;
+      width: 378px;
       height: 300px;
       box-sizing: border-box;
       border: 1px solid rgb(238, 238, 238);
@@ -95,7 +95,7 @@ export default {
       transition: all .2s;
       box-shadow: 0px 0px 0px transparent;
       padding: 20px 12px;
-      background-image: linear-gradient(180deg, rgb(253, 252, 251) 0%, rgb(210, 210, 210) 100%);
+      background-image: #fff;
       &:hover {
         border: 1px solid #ccc;
         box-shadow: 0px 0px 5px rgb(236, 236, 236);
