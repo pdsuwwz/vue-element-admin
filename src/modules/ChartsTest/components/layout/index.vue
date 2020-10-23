@@ -71,7 +71,7 @@ export default {
       this.$nextTick(() => {
         const dom = document.querySelector('#echarts-container')
         const echarts = Echarts.init(dom)
-        console.log(echartsUtils[type](data))
+        echarts.clear()
         echarts.setOption(echartsUtils[type](data))
       })
     }
