@@ -1,10 +1,3 @@
-/*
- * @Author: GGupzHH
- * @Date: 2020-10-22 14:47:26
- * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2020-10-22 19:30:38
- */
-
 // Pie 饼图
 export function echartsPie ({ title, legend, series }) {
   return {

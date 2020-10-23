@@ -25,7 +25,15 @@ export default {
   data () {
     return {
       tabDefault: 'echarts',
-      tabList: [{ label: 'Echarts', name: 'echarts' }, { label: 'D3', name: 'd3' }]
+      tabList: [
+        {
+          label: 'Echarts',
+          name: 'echarts'
+        }, {
+          label: 'D3',
+          name: 'd3'
+        }
+      ]
     }
   },
   computed: {
