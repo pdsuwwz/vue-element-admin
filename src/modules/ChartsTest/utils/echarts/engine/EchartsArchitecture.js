@@ -1,10 +1,3 @@
-/*
- * @Author: GGupzHH
- * @Date: 2020-10-22 14:45:50
- * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2020-10-23 11:23:31
- */
-
 // Dashboard 架构图
 export function echartsArchitecture ({ data }) {
   return {

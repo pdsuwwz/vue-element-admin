@@ -1,10 +1,3 @@
-/*
- * @Author: GGupzHH
- * @Date: 2020-10-22 14:34:10
- * @Last Modified by: mikey.zhaopeng
- * @Last Modified time: 2020-10-22 19:16:36
- */
-
 // Line 折线图
 export function echartsLine ({ title, legend, xAxis, series }) {
   return {
