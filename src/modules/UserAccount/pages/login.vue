@@ -24,7 +24,6 @@
         >
           <el-input
             v-model="form.username"
-            suffix-icon="user-tie"
             placeholder="用户名: admin or user"
           >
             <font-awesome-icon
@@ -44,7 +43,6 @@
           <el-input
             v-model="form.password"
             :type="showPassword ? 'text' : 'password'"
-            suffix-icon="lock"
             placeholder="密码: 同用户名"
           >
             <font-awesome-icon
