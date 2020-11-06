@@ -10,8 +10,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   modules: {
-    DemoTest: DemoTestModule,
-    a: a
+    DemoTest: DemoTestModule
   }
 })
 export default store
