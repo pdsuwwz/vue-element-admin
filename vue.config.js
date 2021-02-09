@@ -6,6 +6,8 @@ function resolve (param) {
 
 module.exports = {
   productionSourceMap: false,
+  publicPath: '/vue-element-admin',
+  assetsDir: 'static',
   chainWebpack: config => {
     config
       .plugin('html')

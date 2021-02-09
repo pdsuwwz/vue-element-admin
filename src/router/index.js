@@ -4,7 +4,7 @@ import routes from './routes'
 
 Vue.use(Router)
 export default new Router({
-  base: '/',
-  mode: 'history',
+  base: '/vue-element-admin',
+  mode: 'hash',
   routes
 })
