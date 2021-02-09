@@ -1,0 +1,37 @@
+.el-form-item__label {
+  color: #606266;
+}
+
+.el-form-item--small .el-form-item__label {
+  line-height: 20px;
+}
+.el-form--label-top .el-form-item__label {
+  padding: 0 0 4px 0;
+}
+
+// el-message 样式覆盖
+.el-message {
+  min-width: 0 !important;
+  height: 40px;
+  padding-right: 20px;
+  background-color: #fff !important;
+  border: none !important;
+  box-shadow: 0px -4px 14px 3px rgba(#000, 0.06), 0px 12px 28px 0px rgba(#000, 0.06) !important;
+}
+
+.el-message .el-message__content {
+  color: #606266 !important;
+}
+
+.el-message .el-icon-success {
+  color: $--color-success;
+}
+.el-message .el-icon-warning {
+  color: $--color-warning;
+}
+.el-message .el-icon-info {
+  color: $--color-primary;
+}
+.el-message .el-icon-error {
+  color: $--color-danger;
+}
