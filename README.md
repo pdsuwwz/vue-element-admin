@@ -26,7 +26,7 @@
   * [ ] 风格切换(可预览)
 * 反馈 Feedback
   * [x] 加载进度条
-  * [ ] Dropdown 下拉框
+  * [ ] Dropdown 下拉菜单
   * [ ] 错误页 (404, 403, 500)
 * 数据列表 List (header, content, footer)
   * [ ] 搜索列表(远程 remote)
