@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d212ba8"],{aa3e:function(t,e,a){"use strict";function c(t){var e=t.title,a=t.effectScatter,c=t.scatter;return{title:{text:e},xAxis:{scale:!0},yAxis:{scale:!0},series:[{type:"effectScatter",symbolSize:20,data:a},{type:"scatter",data:c}]}}a.r(e),a.d(e,"echartsScatter",(function(){return c}))}}]);

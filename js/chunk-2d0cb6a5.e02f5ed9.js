@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0cb6a5"],{"4a24":function(e,o,t){"use strict";function r(e){var o=e.tooltip,t=e.series;return{tooltip:o,toolbox:{feature:{restore:{},saveAsImage:{}}},series:t}}t.r(o),t.d(o,"echartsDashboard",(function(){return r}))}}]);

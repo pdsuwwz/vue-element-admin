@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0a483a"],{"0785":function(e,n,s){"use strict";function t(e){var n=e.dimensions,s=e.source;return{legend:{},tooltip:{},dataset:{dimensions:n,source:s},xAxis:{type:"category"},yAxis:{},series:[{type:"bar"},{type:"bar"},{type:"bar"}]}}s.r(n),s.d(n,"echartsBar",(function(){return t}))}}]);
