@@ -1,5 +1,55 @@
 import request from '@/utils/request'
 
+export function login (data) {
+  // return request({
+  //   url: '/login',
+  //   method: 'post',
+  //   data
+  // })
+
+  console.log('data', data)
+  return {
+    error: 0,
+    msg: 'OK',
+    data: {
+      user: {
+        email: 'admin@org.com',
+        phone: '15290788137',
+        username: '管理员',
+        id: '601d85900f43923hffbcs',
+        token: '4v8acea-6a89-2a2ebc-10802-9ac19003'
+      }
+    }
+  }
+}
+export function logout (data) {
+  return request({
+    url: '/logout',
+    method: 'post',
+    data
+  })
+}
+
+export function getUserInfoData (params) {
+  // return request({
+  //   url: '/user_info',
+  //   method: 'get',
+  //   params
+  // })
+  return {
+    error: 0,
+    msg: 'OK',
+    data: {
+      user: {
+        email: 'admin@org.com',
+        phone: '15290788137',
+        username: '管理员',
+        id: '601d85900f43923hffbcs'
+      }
+    }
+  }
+}
+
 export function getDemoTestList (params) {
   return request({
     url: '/api/demo_test/list',

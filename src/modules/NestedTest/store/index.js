@@ -1,6 +1,8 @@
 
+import mixin from '@/store/utils/mixin'
 const NestedTestModule = {
   namespaced: true,
+  _name: 'NestedTest',
   state: {
   },
   getters: {
@@ -9,9 +11,7 @@ const NestedTestModule = {
   },
   mutations: {
   },
-  getAction (name) {
-    return `NestedTest/${Object.keys(this.actions)[Object.keys(this.actions).indexOf(name)]}`
-  }
+  ...mixin
 }
 
 export default NestedTestModule

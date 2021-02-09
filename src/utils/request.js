@@ -1,7 +1,6 @@
 import axios from 'axios'
-import { Message } from 'element-ui'
+import Cookie from 'js-cookie'
 
-import { getCookieToken } from '@/utils/cookie'
 import { camelizeKeys, decamelizeKeys } from '@/utils/camelCase'
 import Router from '@/router/index'
 
@@ -20,6 +19,7 @@ const codeMessage = {
   401: '用户没有权限（令牌、用户名、密码错误）。',
   403: '用户得到授权，但是访问是被禁止的。',
   404: '发出的请求针对的是不存在的记录，服务器没有进行操作。',
+  405: '请求不允许。',
   406: '请求的格式不可得。',
   410: '请求的资源被永久删除，且不会再得到的。',
   422: '当创建一个对象时，发生一个验证错误。',
@@ -40,6 +40,8 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(
   request => {
+    const token = Cookie.get('token')
+
     // Conversion of hump nomenclature
     request.data = decamelizeKeys(request.data)
     request.params = decamelizeKeys(request.params)
@@ -48,9 +50,10 @@ service.interceptors.request.use(
      * 让每个请求携带自定义 token
      * 请根据实际情况自行修改
      */
-    if (getCookieToken()) {
-      request.headers.Authorization = `Bearer ${getCookieToken()}`
+    if (request.url === '/login') {
+      return request
     }
+    request.headers.Authorization = token
     return request
   },
   error => {
@@ -69,8 +72,6 @@ service.interceptors.response.use(
      *     error: 0      0 success | 1 error | 5000 failed | HTTP code
      *  }
      */
-
-    // Conversion of hump nomenclature
     const data = response.data
     return camelizeKeys(data)
   },
@@ -87,25 +88,12 @@ service.interceptors.response.use(
       errorRedirect(error.config.redirect)
     }
     if (error.response) {
-      Message({
-        message: codeMessage[error.response.status] || error.response.data.message,
-        type: 'error',
-        duration: 3 * 1000,
-        showClose: true
-      })
       return {
         data: {},
         error: error.response.status,
         msg: codeMessage[error.response.status] || error.response.data.message
       }
     } else {
-      // failed
-      Message({
-        message: error.message,
-        type: 'error',
-        duration: 5 * 1000,
-        showClose: true
-      })
       // 某些特定的接口 failed 需要跳转
       return {
         data: {},
