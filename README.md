@@ -11,7 +11,7 @@
   * [ ] 注销
   * [ ] 注册
 * 路由权限 Route Permission
-  * [ ] 路由权限
+  * [x] 路由权限
   * [ ] 指令权限
   * [ ] 角色权限
 * 导航 Navigation
@@ -25,7 +25,8 @@
   * [ ] 主题色，换肤
   * [ ] 风格切换(可预览)
 * 反馈 Feedback
-  * [ ] 加载进度条
+  * [x] 加载进度条
+  * [ ] Dropdown 下拉框
   * [ ] 错误页 (404, 403, 500)
 * 数据列表 List (header, content, footer)
   * [ ] 搜索列表(远程 remote)
