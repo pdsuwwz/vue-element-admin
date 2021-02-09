@@ -26,7 +26,7 @@
       @dialogVisibleHide="dialogVisibleHide"
     >
       <template #default>
-        <div id="echarts-container" />
+        <div id="echarts-container"></div>
       </template>
     </Dialog>
   </div>

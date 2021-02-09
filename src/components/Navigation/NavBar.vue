@@ -5,7 +5,7 @@
     >
       <div class="navbar-header-box">
         <NavigationSideLogo />
-        <div style="flex: 1;" />
+        <div style="flex: 1;"></div>
         <NavigationSideAction />
       </div>
     </header>

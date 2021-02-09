@@ -6,7 +6,7 @@
       :class="{
         collapse: isCollapse
       }"
-    />
+    ></div>
     <aside
       class="navigation-menubar-aside-container fixed-aside"
       :class="{
@@ -38,7 +38,7 @@
             'el-icon-s-fold': !isCollapse,
             'el-icon-s-unfold': isCollapse
           }"
-        />
+        ></i>
       </div>
     </aside>
   </div>
