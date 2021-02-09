@@ -8,7 +8,7 @@
       :show-close="false"
     >
       <div>
-        <slot />
+        <slot></slot>
       </div>
       <div slot="footer">
         <el-button @click="dialogVisibleHide">

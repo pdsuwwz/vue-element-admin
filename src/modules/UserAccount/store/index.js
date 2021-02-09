@@ -1,13 +1,29 @@
 import { sleep } from '@/utils/request'
-import { getDemoTestList } from '@/modules/DemoTest/api'
+import {
+  login,
+  logout,
+  getUserInfoData
+} from '@/modules/UserAccount/api'
 import MUTATION from '@/modules/UserAccount/store/mutations-type'
-const DemoTestModule = {
+import mixin from '@/store/utils/mixin'
+
+const UserAccountModule = {
   namespaced: true,
+  _name: 'UserAccount',
   state: {
-    demoList: {}
+    demoList: {},
+    userInfo: {}
   },
   getters: {
     demoList: state => state.demoList
+  },
+  mutations: {
+    [MUTATION.SET_DEMO_LIST] (state, demoList) {
+      state.demoList = demoList
+    },
+    [MUTATION.UPDATE_USER_INFO] (state, info) {
+      state.userInfo = info
+    }
   },
   actions: {
     async GetModuleTestList ({ commit }, params) {
@@ -20,16 +36,24 @@ const DemoTestModule = {
       }
       commit(MUTATION.SET_DEMO_LIST, result)
       return result
+    },
+    async login ({ state, commit }, data) {
+      await sleep(1000)
+      const res = await login(data)
+      return this.filterResponse(res, null, () => {})
+    },
+    async logout ({ state, commit }) {
+      const res = await logout()
+      return this.filterResponse(res, null, () => {})
+    },
+    async getUserInfo ({ commit }) {
+      const res = await getUserInfoData()
+      return this.filterResponse(res, ({ data }) => {
+        commit(MUTATION.UPDATE_USER_INFO, data.user)
+      })
     }
   },
-  mutations: {
-    [MUTATION.SET_DEMO_LIST] (state, demoList) {
-      state.demoList = demoList
-    }
-  },
-  getAction (name) {
-    return `DemoTest/${Object.keys(this.actions)[Object.keys(this.actions).indexOf(name)]}`
-  }
+  ...mixin
 }
 
-export default DemoTestModule
+export default UserAccountModule

@@ -1,127 +1,159 @@
 <template>
-  <div class="user-account-login-container">
-    <div class="submit-form-box">
-      <div class="form-title">
-        <img
-          class="form-title-icon"
-          src="@/assets/images/vue.svg"
-        >
-        <p>
-          Element Admin
-        </p>
+  <div class="user-account-login">
+    <div class="user-account-nav">
+      <div class="nav-logo"></div>
+      <div class="nav-circle"></div>
+      <div class="nav-title">
+        Element Admin
       </div>
-      <el-form
-        ref="loginForm"
-        :model="form"
-        @keyup.enter.native="onSubmit()"
-      >
-        <el-form-item
-          prop="username"
-          :rules="getRequiredRules({
-            trigger: 'change',
-            message: '请填写用户名'
-          })"
-        >
-          <el-input
-            v-model="form.username"
-            placeholder="用户名: admin or user"
-          >
-            <font-awesome-icon
-              slot="prefix"
-              class="input-icon-prefix"
-              icon="user-tie"
-            />
-          </el-input>
-        </el-form-item>
-        <el-form-item
-          prop="password"
-          :rules="getRequiredRules({
-            trigger: 'change',
-            message: '请填写密码'
-          })"
-        >
-          <el-input
-            v-model="form.password"
-            :type="showPassword ? 'text' : 'password'"
-            placeholder="密码: 同用户名"
-          >
-            <font-awesome-icon
-              slot="prefix"
-              class="input-icon-prefix"
-              icon="lock"
-            />
-            <font-awesome-icon
-              slot="suffix"
-              class="input-icon-lock"
-              :icon="showPassword ? 'eye' : 'eye-slash'"
-              @click="tooglePassword()"
-            />
-          </el-input>
-        </el-form-item>
-        <el-form-item>
-          <div class="form-feedback">
-            <el-checkbox
-              v-model="feedback.autoLogin"
-              true-label="1"
-              false-label="0"
-              @change="handleAutoLogin"
-            >
-              自动登录
-            </el-checkbox>
-            <el-link
-              type="primary"
-              :underline="false"
-            >
-              忘记密码
-            </el-link>
-          </div>
-        </el-form-item>
-        <el-form-item>
-          <el-button
-            type="primary"
-            class="form-submit"
-            @click="onSubmit()"
-          >
-            登录
-          </el-button>
-        </el-form-item>
-      </el-form>
     </div>
+    <UserAccountContainerLayout
+      v-bind="configLogin"
+      :form-data="formData"
+      @on-submit="onSubmit"
+    >
+      <!-- <img
+        slot="titleIcon"
+        src="~@/assets/images/vue.svg"
+        alt=""
+      > -->
+      <i
+        slot="titleIcon"
+        class="el-icon-s-opportunity"
+      ></i>
+    </UserAccountContainerLayout>
   </div>
 </template>
 
 <script>
 
-import { setAutoLogin, getAutoLogin } from '@/modules/UserAccount/utils/auth'
+import UserAccountContainerLayout from '@/modules/UserAccount/components/ContainerLayout'
+
+import UserAccountModule from '@/modules/UserAccount/store'
+
+import Cookie from 'js-cookie'
 
 export default {
   name: 'UserAccountLogin',
+  components: {
+    UserAccountContainerLayout
+  },
   data () {
     return {
-      form: {
-        username: '',
-        password: ''
-      },
-      feedback: {
-        autoLogin: getAutoLogin()
-      },
-      showPassword: false
+      isLoading: true,
+      inputErrorEmail: '',
+      inputErrorPassword: '',
+      formData: {
+        email: 'admin@org.com',
+        password: '123456'
+      }
     }
   },
+  computed: {
+    configLogin () {
+      return {
+        title: '欢迎登录',
+        actionList: [
+          {
+            attrs: {
+              type: 'primary',
+              loading: this.isLoading,
+              size: 'large'
+            },
+            text: '登录',
+            on: {
+              click (refForm) {
+                this.onSubmit(refForm)
+              }
+            }
+          }
+        ],
+        formConfig: [
+          {
+            attrs: {
+              prop: 'email',
+              error: this.inputErrorEmail,
+              rules () {
+                return [
+                  this.getRequiredRules({
+                    trigger: 'change',
+                    message: '请填写登录邮箱'
+                  }), this.getValidatorRules('', 'blur', {
+                    type: 'email',
+                    message: '请输入正确的邮箱地址'
+                  })
+                ]
+              }
+            },
+            label: '邮箱',
+            prefixIcon: 'user-tie',
+            placeholder: '请填写登录邮箱'
+          },
+          {
+            attrs: {
+              prop: 'password',
+              error: this.inputErrorPassword,
+              rules () {
+                return this.getRequiredRules({
+                  trigger: 'change',
+                  message: '请填写密码'
+                })
+              }
+            },
+            link: {
+              text: '忘记密码',
+              click () {
+                console.log(this, 'wo 忘记密码了。。。。')
+              }
+            },
+            type: 'password',
+            label: '密码',
+            prefixIcon: 'lock',
+            placeholder: '请填写密码'
+          }
+        ]
+      }
+    }
+  },
+  created () {
+    this.setLoading(true)
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.setLoading(false)
+    })
+  },
   methods: {
-    handleAutoLogin (val) {
-      setAutoLogin(val)
+    setLoading (isLoading = false) {
+      this.isLoading = isLoading
     },
-    onSubmit () {
-      this.$refs.loginForm.validate(valid => {
-        if (valid) {
-          this.$message({
-            type: 'success',
-            message: '登录成功'
-          })
-        } else {
-          return false
+    onSubmit (refForm) {
+      if (this.isLoading) return
+
+      refForm.validate(async valid => {
+        if (!valid) return
+        this.inputErrorEmail = ''
+        this.inputErrorPassword = ''
+
+        this.setLoading(true)
+        const { error, data, msg } = await this.$store.dispatch(UserAccountModule.getAction('login'), this.formData)
+        if (error) {
+          this.inputErrorEmail = ' '
+          this.inputErrorPassword = msg
+          this.setLoading(false)
+          return
         }
+
+        this.$message({
+          type: 'success',
+          message: '登录成功',
+          showClose: true
+        })
+        Cookie.set('token', data.user.token)
+        Cookie.set('name', data.user.username)
+        this.$router
+          .replace('/')
+          .catch(() => {})
       })
     },
     tooglePassword () {
@@ -133,56 +165,55 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.user-account-login-container {
+.user-account-login {
+  position: relative;
   display: flex;
-  flex-direction: column;
-  height: 100vh;
-  background: #f0f2f5;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+  background-image: url('~@/assets/images/logo-background.jpg');
   background-repeat: no-repeat;
-  background-position: center 80px;
-  background-size: 100%;
-  .submit-form-box {
-    width: 365px;
-    margin: 130px auto 0;
-    user-select: none;
-    /deep/ .el-input .el-input__inner {
-      letter-spacing: 1px;
+  background-size: cover;
+  background-position: center;
+  .user-account-nav {
+    position: absolute;
+    top: 36px;
+    left: 36px;
+    display: flex;
+    align-items: center;
+    color: #f0f2f5;
+    .nav-logo {
+      width: 30px;
+      height: 30px;
+      background-image: url('~@/assets/images/vue.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
     }
-    .input-icon-prefix {
-      padding-left: 6px;
+    .nav-circle {
+      width: 6px;
+      height: 6px;
+      margin: 0 10px;
+      border-radius: 50%;
+      background: #f0f2f5;
     }
-    .input-icon-lock {
-      cursor: pointer;
-    }
-    .form-title {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      font-size: 33px;
-      font-weight: 600;
-      text-align: center;
-      padding-bottom: 35px;
-      .form-title-icon {
-        width: 50px;
-        height: 50px;
-        margin-right: 10px;
-      }
-    }
-    .form-feedback {
-      display: flex;
-      justify-content: space-between;
-    }
-    .form-submit {
-      width: 100%;
+    .nav-title {
+      font-size: 18px;
+      font-weight: 500;
+      line-height: 25px;
     }
   }
 }
 
-@media screen and (max-width: 576px) {
-  .user-account-login-container {
-    .submit-form-box {
-      width: 95%;
+@media screen and (max-width: 600px) {
+  .user-account-container-layout {
+    justify-content: center;
+    .user-account-nav {
+      left: 0;
+      right: 0;
+      margin: auto;
+      justify-content: center;
     }
   }
 }

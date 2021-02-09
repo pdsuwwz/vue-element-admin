@@ -5,19 +5,18 @@ import App from './App'
 import '@/assets/fonts/fontawesome'
 
 import ElementUI from 'element-ui'
+import GlobalComponents from '@/components'
 import { sync } from 'vuex-router-sync'
 import router from '@/router/index'
 import store from '@/store/index'
 import Meta from 'vue-meta'
 import Mixin from '@/mixins'
 
-import '@/styles/element-variables.scss'
-import '@/styles/theme.scss'
-
 import '@/router/permission'
 
 Vue.use(Meta)
 Vue.use(ElementUI, { size: 'large', zIndex: 3000 })
+Vue.use(GlobalComponents)
 
 Vue.config.productionTip = false
 
