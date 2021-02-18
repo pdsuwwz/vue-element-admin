@@ -29,7 +29,7 @@
         <i
           v-else
           :class="routeItem.icon"
-        />
+        ></i>
         <span slot="title">{{ routeItem.name }}</span>
       </template>
     </el-submenu>
@@ -47,7 +47,7 @@
         <i
           v-else
           :class="routeItem.icon"
-        />
+        ></i>
         <span slot="title">{{ routeItem.name }}</span>
       </el-menu-item>
     </template>

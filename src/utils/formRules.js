@@ -1,8 +1,13 @@
-import { regexExtraSpace } from '@/utils/regularExpression'
+import {
+  regexExtraSpace
+} from '@/utils/regularExpression'
 
-function validatorRules (validator, trigger = '') {
+function validatorRules (validator, trigger = '', params) {
   const rule = {
-    required: true, trigger, validator: ''
+    required: true,
+    trigger,
+    validator: '',
+    ...params
   }
   validator ? rule.validator = validator : delete rule.validator
   return rule
@@ -12,7 +17,9 @@ function requiredRules (params = {}) {
     trigger: 'blur',
     message: '不能为空'
   }, params)
+
   return validatorRules((rule, value, callback) => {
+    value = value && value.trim()
     if (!value) {
       callback(new Error(message))
     } else if (Array.isArray(value)) {
@@ -24,6 +31,7 @@ function requiredRules (params = {}) {
     }
   }, trigger)
 }
+
 function requiredRadioRules (params = {}) {
   const { trigger, message } = Object.assign({}, {
     trigger: 'change',

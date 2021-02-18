@@ -1,4 +1,5 @@
-const MUMATION = {
-  SET_DEMO_LIST: 'setDemoList'
+const MUTATION = {
+  SET_DEMO_LIST: 'setDemoList',
+  UPDATE_USER_INFO: 'updateUserinfo'
 }
-export default MUMATION
+export default MUTATION
