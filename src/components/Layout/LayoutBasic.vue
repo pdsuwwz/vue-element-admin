@@ -8,6 +8,7 @@
         <div class="inner-content">
           <router-view />
         </div>
+        <Settings />
       </main>
     </section>
   </div>
@@ -17,12 +18,14 @@
 import NavigationMenuBar from '@/components/Navigation/MenuBar/index'
 import NavigationNavBar from '@/components/Navigation/NavBar'
 import NavigationPageHeader from '@/components/Navigation/PageHeader'
+import Settings from '@/components/Layout/components/Settings'
 export default {
   name: 'LayoutBasic',
   components: {
     NavigationMenuBar,
     NavigationNavBar,
-    NavigationPageHeader
+    NavigationPageHeader,
+    Settings
   }
 }
 </script>
