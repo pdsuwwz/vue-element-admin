@@ -24,7 +24,10 @@
           <div class="slot-title">
             {{ slotItem.title }}
           </div>
-          <component :is="slotItem.component" />
+          <component
+            :is="slotItem.component"
+            @change="changeComponent"
+          />
         </div>
       </div>
     </el-drawer>
@@ -53,6 +56,9 @@ export default {
   methods: {
     handleDrawer () {
       this.isSetting = !this.isSetting
+    },
+    changeComponent (val) {
+      console.log(val)
     }
   }
 }
