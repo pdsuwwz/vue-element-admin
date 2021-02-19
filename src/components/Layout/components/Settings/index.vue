@@ -1,19 +1,32 @@
 <template>
-  <div>
-    <div
-      v-if="!isSetting"
-      class="wrap-settings"
-      @click="handleDrawer()"
-    >
-      <i class="el-icon-setting"></i>
-    </div>
+  <div class="right-panel">
+    <transition name="setting-icon">
+      <div
+        v-if="!isSetting"
+        class="wrap-settings"
+        @click="handleDrawer()"
+      >
+        <i class="el-icon-setting"></i>
+      </div>
+    </transition>
     <el-drawer
       title="主题配置"
       size="22%"
-      :append-to-body="true"
       :visible="isSetting"
+      @close="handleDrawer()"
     >
-      <ThemePocker />
+      <div class="wrap-slot">
+        <div
+          v-for="(slotItem, slotIndex) in slotList"
+          :key="slotIndex"
+          class="slot-item"
+        >
+          <div class="slot-title">
+            {{ slotItem.title }}
+          </div>
+          <component :is="slotItem.component" />
+        </div>
+      </div>
     </el-drawer>
   </div>
 </template>
@@ -28,14 +41,14 @@ export default {
   data () {
     return {
       isSetting: false,
-      isDrawer: true
+      isDrawer: true,
+      slotList: [
+        {
+          title: '主题色',
+          component: 'ThemePocker'
+        }
+      ]
     }
-  },
-  created () {
-
-  },
-  mounted () {
-
   },
   methods: {
     handleDrawer () {
@@ -46,22 +59,42 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.wrap-settings {
-  width: 45px;
-  height: 45px;
-  position: fixed;
-  right: 0px;
-  top: 50%;
-  text-align: center;
-  border-radius: 6px 0px 0px 6px;
-  cursor: pointer;
-  z-index: 99999;
-  transform: translateY(-50%);
-  background-color: $--color-primary;
-  color: $--color-text-regular;
-  .el-icon-setting {
-    font-size: 30px;
-  line-height: 45px;
+.right-panel {
+  .setting-icon-enter-active {
+    transition: opacity .5s .1s;
+  }
+  .setting-icon-enter, .setting-icon-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
+  .wrap-settings {
+    width: 45px;
+    height: 45px;
+    position: fixed;
+    right: 0px;
+    top: 50%;
+    text-align: center;
+    border-radius: 6px 0px 0px 6px;
+    cursor: pointer;
+    z-index: 99999;
+    transform: translateY(-50%);
+    background-color: $--color-primary;
+    color: $--color-text-regular;
+    .el-icon-setting {
+      font-size: 30px;
+    line-height: 45px;
+    }
+  }
+  /deep/ .wrap-slot {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    .slot-item {
+      display: flex;
+      align-items: center;
+      .slot-title {
+        flex: 1;
+      }
+    }
   }
 }
 </style>
