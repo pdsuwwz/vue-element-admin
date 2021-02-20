@@ -1,13 +1,14 @@
 <template>
   <div class="right-panel">
     <transition name="setting-icon">
-      <div
+      <el-button
         v-if="!isSetting"
+        type="primary"
         class="wrap-settings"
         @click="handleDrawer()"
       >
         <i class="el-icon-setting"></i>
-      </div>
+      </el-button>
     </transition>
     <el-drawer
       title="主题配置"
@@ -26,7 +27,6 @@
           </div>
           <component
             :is="slotItem.component"
-            @change="changeComponent"
           />
         </div>
       </div>
@@ -56,9 +56,6 @@ export default {
   methods: {
     handleDrawer () {
       this.isSetting = !this.isSetting
-    },
-    changeComponent (val) {
-      console.log(val)
     }
   }
 }
@@ -78,16 +75,13 @@ export default {
     position: fixed;
     right: 0px;
     top: 50%;
-    text-align: center;
     border-radius: 6px 0px 0px 6px;
     cursor: pointer;
     z-index: 99999;
     transform: translateY(-50%);
-    background-color: $--color-primary;
-    color: $--color-text-regular;
+    padding: 0px;
     .el-icon-setting {
       font-size: 30px;
-    line-height: 45px;
     }
   }
   /deep/ .wrap-slot {
