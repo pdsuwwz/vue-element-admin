@@ -30,8 +30,8 @@ export default {
       },
       immediate: true
     },
-    async theme (val) {
-      const oldVal = this.chalk ? this.theme : ORIGINAL_THEME
+    async theme (val, prevVal) {
+      const oldVal = prevVal || this.theme
       if (typeof val !== 'string') return
       const themeCluster = this.getThemeCluster(val.replace('#', ''))
       const originalCluster = this.getThemeCluster(oldVal.replace('#', ''))
@@ -60,10 +60,10 @@ export default {
         }
       }
 
-      // if (!this.chalk) {
-      const url = `https://unpkg.com/element-ui@${version}/lib/theme-chalk/index.css`
-      await this.getCSSString(url, 'chalk')
-      // }
+      if (!this.chalk) {
+        const url = `https://unpkg.com/element-ui@${version}/lib/theme-chalk/index.css`
+        await this.getCSSString(url, 'chalk')
+      }
 
       const chalkHandler = getHandler('chalk', 'chalk-style')
 
