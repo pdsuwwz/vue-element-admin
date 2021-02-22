@@ -17,10 +17,9 @@
         :default-active="getCurrentRoute"
         class="menubar-menu-list"
         :collapse="isCollapse"
+        :collapse-transition="false"
         @select="handleMenuSelect"
       >
-        <!-- :collapse-transition="false" -->
-        <!-- :active-text-color="getActiveTextColor" -->
         <NavigationMenuBarItem
           v-for="(route, index) in getRoutes"
           :key="index"
