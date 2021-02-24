@@ -110,7 +110,7 @@ export default {
   }
   /deep/ .el-submenu.submenu-active {
     & > .el-submenu__title,
-    .el-icon-location,
+    [class^="el-icon-"],
     .menu-font-awesome-icon {
       color: $--color-primary;
     }
